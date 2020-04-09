@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { APIResponse } from './types';
-const baseURL = 'localhost:8002/';
+const baseURL = 'http://localhost:8002';
 
 const freeWheelinAxios: AxiosInstance = axios.create({
 	baseURL

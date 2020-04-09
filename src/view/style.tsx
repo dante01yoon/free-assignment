@@ -30,7 +30,7 @@ export const StyledColumn = styled.div`
 export const StyledLeftColumn = styled(StyledColumn)`
 	overflow-y: auto;
 	width: 646px;
-	height: auto; 
+	height: 100%;
 `; 
 
 export const StyledRightColumn = styled(StyledColumn)`

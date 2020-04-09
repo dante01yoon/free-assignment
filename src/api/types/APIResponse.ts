@@ -5,7 +5,9 @@ export type APIError = {
 	error_message?: string;
 	success?: boolean
 };
+export type ResponseWrapper<Data> = {
+	"data": Data[]
+}
 export type WhenError = [APIError, undefined];
-export type WhenSuccess<Data> = [undefined, Data];
+export type WhenSuccess<Data> = [undefined, ResponseWrapper<Data>];
 export type APIResponse<Data> = WhenError | WhenSuccess<Data>; 
-

@@ -1,4 +1,4 @@
-import { ActionStatus } from 'src/lib/ActionStatus'; 
+import { ActionStatus } from 'src/lib/actionStatus'; 
 import { action, observable } from 'mobx'; 
 import { RootStore } from './RootStore'; 
 import { APIError } from 'src/api/types'; 

@@ -2,7 +2,6 @@ import { observable, action } from 'mobx';
 import { RootStore } from './RootStore';
 import { APIStore } from './APIStore';
 import { requestProblem, requestSimillar } from 'src/api/problemList';
-import { throws } from 'assert';
 export type ProblemModel = {
 	id: number,
 	unitCode: number,
@@ -24,23 +23,26 @@ export type ProblemModel = {
 }
 
 export class ProblemStore extends APIStore{
+	
 	@observable problemData:	ProblemModel[] = []; 
 	@observable simillarData: ProblemModel[] = []; 
 	@observable dataIndex: number | undefined = void 0;
 	@observable clickedDataIndex: number = 0; 
 	@observable disabled : boolean = true; 
+	
+	constructor(rootStore:RootStore){
+		super();
+		this.rootStore = rootStore; 
+	}
 
 	@action.bound
 	addData(id: number, uniqIndex: number): void {
 		const foundData = this.simillarData.find((data,index) =>{
 			return data.id === id; 
 		})
-		foundData && 
-		this.problemData?.filter((data,index) => {
-			this.clickedDataIndex === index && (
-				this.problemData.splice(this.clickedDataIndex+1, 0, foundData)
-			)
-		})
+		if(foundData){ 
+			this.problemData?.splice(this.clickedDataIndex+1, 0 , foundData);
+		}
 	}
 	@action.bound
 	switchData(uniqueIndex: number ): void {
@@ -57,8 +59,9 @@ export class ProblemStore extends APIStore{
 	async requestProblem(){
 		try{
 			this.onRequest(); 
-			const [,data] = await requestProblem();
-			data && (	this.problemData = [ ...this.problemData, data]); 
+			const [,jsonResponse] = await requestProblem();
+		  const data = jsonResponse?.data;
+			data && data.length > 0 && (	this.problemData = [ ...this.problemData, ...data]); 
 			
 		} catch(error){ 
 			this.onFailure(); 
@@ -71,8 +74,9 @@ export class ProblemStore extends APIStore{
 			this.onRequest();
 			if(this.simillarData?.length ===0){
 				this.onRequest();
-				const [, data] = await requestSimillar();
-				data && (this.simillarData = [...this.problemData, data]); 
+				const [, jsonResponse] = await requestSimillar();
+				const data = jsonResponse?.data;
+				data && data?.length > 0 && (this.simillarData = [...this.problemData, ...data]); 
 			}
 		} catch(error) {
 			this.onFailure();
