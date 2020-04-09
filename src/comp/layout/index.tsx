@@ -1,0 +1,2 @@
+export {Gnb} from './gnb'; 
+
