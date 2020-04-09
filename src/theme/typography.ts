@@ -24,7 +24,7 @@ export const typography: Typography = Object.freeze(
 		`,
 		title14smallBlack: `
 			${DEFAULT_TYPOGRAPHY_STYLE};
-			${FONT_WEIGHT.BOLD};
+			${FONT_WEIGHT.NORMAL};
 			line-height: 20px; 
 			color: #4C4C4C;
 		`,

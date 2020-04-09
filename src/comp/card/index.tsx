@@ -5,13 +5,20 @@ import {
 	StyledTitleBox,
 	StyledTitle,
 	StyledTypeName,
-	StyledButtonBox
+	StyledButtonBox,
+	StyledTitleNestedBox,
+	StyledContentBox,
+	StyledContentColumnFirst,
+	StyledContentColumnSecond,
+	StyledNumber
  } from './style';
  import BlueButton from 'src/comp/button';
 import { ProblemModel } from 'src/store/ProblemStore';
 const Card: FC<{
+	index: number,
 	data: ProblemModel
 }> = ({
+	index,
 	data 
 }) => {
 	const { id, problemURL, problemType, unitName} = data 	
@@ -20,13 +27,26 @@ const Card: FC<{
 			<StyledCard>
 				<StyledTitleBox>
 						<StyledTypeName>{ problemType }</StyledTypeName>
-						<StyledTitle>{ unitName }</StyledTitle>
+						<StyledTitleNestedBox>
+							<StyledTitle>
+								{ unitName }
+							</StyledTitle>
+						</StyledTitleNestedBox>
 						<StyledButtonBox>
 							<BlueButton isActive={false}> 유사문항 </BlueButton>
 							<BlueButton isActive={false}> 삭제 </BlueButton>
 						</StyledButtonBox>
 				</StyledTitleBox>
-				<StyledImg src={problemURL}/>			
+				<StyledContentBox>
+					<StyledContentColumnFirst>
+						<StyledNumber>
+							{ index+1 }
+						</StyledNumber>
+					</StyledContentColumnFirst>
+					<StyledContentColumnSecond>
+						<StyledImg src={problemURL}/>		
+					</StyledContentColumnSecond>
+				</StyledContentBox>	
 			</StyledCard>
 		</>
 	)

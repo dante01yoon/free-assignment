@@ -17,7 +17,7 @@ const ProblemView: FC<{
 				problemData.length >0  
 					?
 						problemData.map((value,index) => {
-							return <Card key={index} data={value}/> 
+							return <Card key={index} index={index} data={value}/> 
 						})
 					: ''
 			}
