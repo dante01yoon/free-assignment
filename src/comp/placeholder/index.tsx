@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import {
 	StyledPlaceholder,
 	StyledParagraph,
-	StyledTextBox
+	StyledTextBox,
+	EditBlueButton
 } from './style';
-import BlueButton from 'src/comp/button';
 
 const Placeholder: FC = () => {
 
@@ -12,9 +12,9 @@ const Placeholder: FC = () => {
 		<StyledPlaceholder>
 			<StyledTextBox>
 				<StyledParagraph>
-					<BlueButton isActive={false}> 
+					<EditBlueButton > 
 						유사문항
-					</BlueButton>
+					</EditBlueButton>
 					버튼을 누르면 
 				</StyledParagraph>
 				<StyledParagraph>

@@ -36,6 +36,7 @@ export const typography: Typography = Object.freeze(
 		button14skyBlue: `
 			${DEFAULT_TYPOGRAPHY_STYLE};
 			${FONT_WEIGHT.BOLD};
+			font-size: 14px;
 			color: #00ABFF;
 		`,
 		button24thickBlue: `

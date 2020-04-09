@@ -83,4 +83,8 @@ export class ProblemStore extends APIStore{
 		}
 		this.onSuccess(); 
 	}
+	@action.bound
+	changeClickedIndex(index:number){
+		this.clickedDataIndex = index;
+	}
 }
