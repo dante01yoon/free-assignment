@@ -9,16 +9,15 @@ import {
 } from './style';
 import { useStore } from 'src/lib/hooks';
 import ProblemView from 'src/comp/Problem'; 
+import SimilarView from 'src/comp/Similar';
 import { Gnb } from 'src/comp/layout'; 
 const MainView: FC<{
 }> = observer(({
 }) => {
-	const {requestProblem, requestSimillar, simillarData,problemData} = useStore("problem");
+	const {requestProblem, simillarData,problemData} = useStore("problem");
 	useEffect(()=> {
-		if(problemData.length === 0) {
-			requestProblem(); 
-		}
-	})
+		requestProblem(); 
+	},[])
 	return(
 		<LayoutContainer>
 			<GnbContainer>
@@ -32,7 +31,7 @@ const MainView: FC<{
 							?
 								<Placeholder/>
 							:
-								''
+								<SimilarView similarData={simillarData}/>
 						}
 					</StyledRightColumn>
 				</Main>

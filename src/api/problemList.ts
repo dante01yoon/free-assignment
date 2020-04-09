@@ -7,7 +7,7 @@ import {
 } from 'src/store/ProblemStore';
 const BASE = ''
 const GET_PROBLEM_LIST = '/fe-problems.json';
-const GET_SIMILLAR_LIST = '/fe-simillar.json';
+const GET_SIMILLAR_LIST = '/fe-simillars.json';
 
 export const requestProblem = () : Promise<APIResponse<ProblemModel>> => {
 	return http.GET<ProblemModel>(`${GET_PROBLEM_LIST}`); 

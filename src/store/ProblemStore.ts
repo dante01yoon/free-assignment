@@ -27,7 +27,7 @@ export class ProblemStore extends APIStore{
 	@observable problemData:	ProblemModel[] = []; 
 	@observable simillarData: ProblemModel[] = []; 
 	@observable dataIndex: number | undefined = void 0;
-	@observable clickedDataIndex: number = 0; 
+	@observable clickedDataIndex?: number; 
 	@observable disabled : boolean = true; 
 	
 	constructor(rootStore:RootStore){
@@ -36,19 +36,21 @@ export class ProblemStore extends APIStore{
 	}
 
 	@action.bound
-	addData(id: number, uniqIndex: number): void {
-		const foundData = this.simillarData.find((data,index) =>{
-			return data.id === id; 
-		})
-		if(foundData){ 
+	addData(index: number): void {
+	
+		const foundData = this.simillarData[index]; 
+		if(foundData && this.clickedDataIndex){ 
 			this.problemData?.splice(this.clickedDataIndex+1, 0 , foundData);
 		}
 	}
 	@action.bound
-	switchData(uniqueIndex: number ): void {
-		const temp = this.problemData[this.clickedDataIndex];
-		!this.disabled && (this.problemData[this.clickedDataIndex] = this.simillarData[uniqueIndex]);
-		this.simillarData[uniqueIndex] = temp;
+	swapData(uniqueIndex: number ): void {
+		if( this.clickedDataIndex ){
+			const temp =  this.problemData[this.clickedDataIndex];
+			this.problemData[this.clickedDataIndex] = this.simillarData[uniqueIndex];
+		
+			this.simillarData[uniqueIndex] = temp;
+		}
 	}
 	@action.bound
 	removeData(index:number){
@@ -71,13 +73,21 @@ export class ProblemStore extends APIStore{
 	@action.bound
 	async requestSimillar(){
 		try {
+			/***
+			 * 유사문제를 눌렀을 때 기존 유사문제 리스트가 리프레시 되는 것인지
+			 * 앱 전체가 종료되기 전에는 state를 유지해야하는 것인지 몰라 
+			 * 두 가지 모두 구현하였습니다.
+			 */
+			// if(this.simillarData?.length ===0){
+			// 	this.onRequest();
+			// 	const [, jsonResponse] = await requestSimillar();
+			// 	const data = jsonResponse?.data;
+			// 	data && data?.length > 0 && (this.simillarData = [...this.problemData, ...data]); 
+			// }
 			this.onRequest();
-			if(this.simillarData?.length ===0){
-				this.onRequest();
-				const [, jsonResponse] = await requestSimillar();
-				const data = jsonResponse?.data;
-				data && data?.length > 0 && (this.simillarData = [...this.problemData, ...data]); 
-			}
+			const [, jsonResponse] = await requestSimillar();
+			const data = jsonResponse?.data;
+			data && (this.simillarData = data);
 		} catch(error) {
 			this.onFailure();
 		}
