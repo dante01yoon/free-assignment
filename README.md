@@ -2,9 +2,7 @@
 ##### This project is a result of the company's request to perform tasks during job search and job transfers, and is not responsible for what happens when the relevant code is copied, modified, or cited without any permission. 
 
 #### Preview 
-
-
-![](freewheelin.gif)
+	![](demo/freewheelin.gif)
 
 
 #### How to start
