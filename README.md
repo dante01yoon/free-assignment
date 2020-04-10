@@ -1,6 +1,10 @@
 ### Online Math work book 
 ##### This project is a result of the company's request to perform tasks during job search and job transfers, and is not responsible for what happens when the relevant code is copied, modified, or cited without any permission. 
 
+#### Preview 
+
+
+![Preview](freewheelin.gif)
 
 
 #### How to start
@@ -11,3 +15,5 @@
 4.go to localhost:8002 
 
 5.enjoy :smiley: 
+
+
