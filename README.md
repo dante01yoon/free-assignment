@@ -4,7 +4,7 @@
 #### Preview 
 
 
-![](freewheelin.gif.gif)
+![](freewheelin.gif)
 
 
 #### How to start
