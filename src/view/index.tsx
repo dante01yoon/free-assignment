@@ -14,28 +14,28 @@ import { Gnb } from 'src/comp/layout';
 const MainView: FC<{
 }> = observer(({
 }) => {
-	const {requestProblem, simillarData,problemData} = useStore("problem");
+	const {requestProblem, simillarData,problemData, getTitleByIndex} = useStore("problem");
 	useEffect(()=> {
 		requestProblem(); 
 	},[])
 	return(
-		<LayoutContainer>
-			<GnbContainer>
-				<Gnb/>
-			</GnbContainer>
-			<Main>
-					<ProblemView problemData={problemData}/>
-					<StyledRightColumn>
-						{
-							simillarData?.length === 0  
-							?
-								<Placeholder/>
-							:
-								<SimilarView similarData={simillarData}/>
-						}
-					</StyledRightColumn>
-				</Main>
-		</LayoutContainer>
+			<LayoutContainer>
+				<GnbContainer>
+					<Gnb/>
+				</GnbContainer>
+				<Main>
+						<ProblemView problemData={problemData}/>
+						<StyledRightColumn>
+							{
+								simillarData?.length === 0  
+								?
+									<Placeholder/>
+								:
+									<SimilarView similarData={simillarData} title={getTitleByIndex}/>
+							}
+						</StyledRightColumn>
+					</Main>
+			</LayoutContainer>
 	)
 });
 

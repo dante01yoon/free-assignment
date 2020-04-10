@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import { RootStore } from './RootStore';
 import { APIStore } from './APIStore';
 import { requestProblem, requestSimillar } from 'src/api/problemList';
@@ -75,7 +75,7 @@ export class ProblemStore extends APIStore{
 		try {
 			/***
 			 * 유사문제를 눌렀을 때 기존 유사문제 리스트가 리프레시 되는 것인지
-			 * 앱 전체가 종료되기 전에는 state를 유지해야하는 것인지 몰라 
+			 * 앱 전체가 종료되기 전에는 state를 유지해야하는 것인지 판단이 서지를 않아
 			 * 두 가지 모두 구현하였습니다.
 			 */
 			// if(this.simillarData?.length ===0){
@@ -96,5 +96,13 @@ export class ProblemStore extends APIStore{
 	@action.bound
 	changeClickedIndex(index:number){
 		this.clickedDataIndex = index;
+	}
+	@computed get getTitleByIndex() {
+		return (this.problemData && (this.clickedDataIndex !== void 0)
+			? 
+				this.problemData[this.clickedDataIndex ].unitName
+			: 
+				''
+		)
 	}
 }

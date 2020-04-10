@@ -2,6 +2,7 @@ import { Color } from 'src/theme/interface';
 
 export const colors : Color = {
 	background: '#F2F2F2',
+	skyBackground: '#FAFAFA',
 	skyBlue: '#00ABFF',
 	thickBlue: '#02C7F2',
 	smallBlack: '#4C4C4C',

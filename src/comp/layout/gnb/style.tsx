@@ -6,7 +6,8 @@ export const StyledGnbLeft = styled.nav`
 	width: 646px;
 	height: 48px;
 	align-items: center;
-	background-color: ${p => p.theme.colors.white}
+	box-shadow: 2px 0 0 ${p => p.theme.colors.border}; 
+	background-color: ${p => p.theme.colors.white};
 `; 
 
 export const StyledGnbRight = styled.nav`

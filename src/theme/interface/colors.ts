@@ -1,5 +1,6 @@
 export interface Color {
-  background: string;
+	background: string;
+	skyBackground: string;
 	skyBlue: string;
 	thickBlue: string;
 	smallBlack: string;
